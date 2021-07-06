@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- <div class="card">
+
+    {% for m in movie %}
+        <h3 class="text-white">{{m.id}}</h3>
+    {% endfor %}
+</div> -->
+<div class="container pt-5 pb-5 account_sec" style="margin-top: 6rem;">
+   
+ 
+        <div class="col-lg-6 offset-lg-4 pt-5">
+            <div class="card">
+                <div class="text-center">
+                    <i class="fas fa-user-circle h1 pt-2 text-info"></i>
+                    <h2 class="text-info" >USERDETAILS</h2>
+                </div>
+                <div class="card-body bg-info">
+                       <div class="text-justify">
+                      
+                         <div class="row">
+                             <div class="col-lg-5 col-5">
+                                 <h4 class="text-white h6">FIRST NAME </h4>
+                                 <h4 class="text-white h6">LAST NAME </h4>
+                                 <h4 class="text-white h6">DATE OF BIRTH </h4>
+                                 <h4 class="text-white h6">MOBILE NUMBER </h4>
+                             </div>
+                             <div class="col-lg-1 col-1">
+                                <h4 class="text-white" >:</h4> 
+                                <h4 class="text-white" >:</h4>
+                                <h4 class="text-white" >:</h4>
+                                <h4 class="text-white" >:</h4>
+                             </div>
+                             <div class="col-lg-6 col-5">
+                                  <h4 class="text-white h6">{{user.firstName}}</h4>
+                                  <h4 class="text-white h6">{{user.lastName}}</h4>
+                                  <h4 class="text-white h6">{{user.dateOfBirth}}</h4>
+                                  <h4 class="text-white h6">{{user.phone}}</h4>
+                             </div>
+                        
+                          
+                  
+                      <div class="col-lg-5 col-5"> <h4 class="text-white h6">EMAIL ID </h4></div>
+                      <div class="col-lg-1 col-1"> <h4 class="text-white" >:</h4> </div>
+                      <div class="col-lg-6 col-6">
+                        <h4 class="text-white h6">{{email.username}}</h4>
+                      </div>
+                    </div>
+                 
+                       
+                     
+                       </div>
+                   
+                      
+      
+                </div>
+            </div>
+            <div class="col-md-6 mx-auto m-5">
+                <button class="btn btn-info btn-block " data-toggle="modal" data-toggle="modal"  data-target="#exampleModal">edit</button>
+            </div>
+        </div>
+     
+    
+      
+</div>
+
+   <!-- footer -->
+   <section>
+    <footer class="container-fluid p-0" style="margin-top: 6rem;">
+      <div class="container-fluid text-light p-4 ">
+          <div class="row justify-content-center">
+              <div class="col-lg-5 col-md-5 col-xl-5 text-center text-lg-left">
+                  <P class="font-weight-bold">FOLLOW US</P>
+                 <div class="pt-1 text-center text-lg-left">
+                   <a href=""><i style="font-size: 30px;" class="fab fa-facebook-square text-light"></i></a>
+                   <a href=""><i style="font-size: 30px;" class="fab fa-twitter-square px-3   text-light"></i></a>
+                   <a href=""><i style="font-size: 30px;" class="fab fa-instagram px-3  text-light"></i></a>
+                   
+                   <a href=""><i style="font-size: 30px;" class="fab fa-whatsapp-square px-3 text-light"></i></a>
+                 </div>
+                 
+                </div>
+                <div class="col-lg-4 text-center text-lg-left pt-5">
+                <h3 class="text-light h5 ">arundevunni@gmail.com</h3>
+               </div>
+               <div class="col-lg-3 pt-5">
+                    <div class="input-group ">
+                   
+                           <input type="text" class="form-control" placeholder="9744551779"  aria-label="Recipient's username" aria-describedby="basic-addon2" disabled>
+                               <div class="input-group-append">
+                                   <button class="btn btn-info" data-toggle="modal"  data-target="#exampleModal" type="button"><i class="fas fa-mobile-alt text-light"></i></button>
+                               </div>
+                        </div>
+                    </div>
+      
+          </div>
+      </div>
+  </footer>
+  </section>
+
+  <!-- modal -->
+ 
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body bg-dark">
+        <form method="POST" action="{% url 'account' %}">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="formGroupExampleInput" class="text-white">First Name</label>
+              <input type="text" class="form-control"  name="firstname" value="{{user.firstName}}">
+            </div>
+            <div class="form-group">
+              <label class="text-white" >Last Name</label>
+              <input type="text" class="form-control"  name="lastname" value="{{user.lastName}}">
+            </div>
+            <div class="form-group">
+                <label class="text-white">Date Of Birth</label>
+                <input type="text" class="form-control"name="dateofbirth" value="{{user.dateOfBirth}}">
+              </div>
+              <div class="form-group">
+              
+                <input type="hidden" class="form-control"name="confirmpasswrd" value="{{user.confirmPassword}}">
+              </div>
+              <div class="form-group">
+                <label class="text-white">Mobile Number</label>
+                <input type="text" class="form-control"  name="phonenumber" value="{{user.phone}}">
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-outline-info">Update</button>
+              </div>
+            
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- modal -->
+{% endblock %}

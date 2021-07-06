@@ -1,0 +1,345 @@
+{% load static %}
+{% load embed_video_tags %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+    <title>Moviestreet</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="{% static 'css/lightslider.css' %}">
+  
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+   
+  </head>
+  <body>
+   
+<header>
+    <div class="container-fluid p-0">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#"><i class="fas fa-video text-white"></i><span class="text-white">MOVIE</span> STREET</a>
+              <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span  class="toggler-icon top-bar"></span>
+                <span   class="toggler-icon middle-bar"></span>
+                <span  class="toggler-icon bottom-bar"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  
+                <ul class="navbar-nav mx-auto text-center">
+                  <li class="nav-item">
+                    <a class="nav-link active text-white" aria-current="page" href="{% url 'home' %}">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Contact Us</a>
+                  </li>
+                 
+                  <li class="nav-item text-lg-end">
+                    <a class="nav-link" href="{% url 'login' %}">Log IN</a>
+                  </li>
+                  <li class="nav-item text-lg-end">
+                    <a class="nav-link" href="{% url 'register' %}">Sign UP</a>
+                  </li>
+                </ul>
+                <form class="d-flex" method="GET" action="{% url 'home' %}">
+                  <input class="form-control me-2" name="name" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-warning" type="submit">Search</button>
+                </form>
+              </div>
+            </div>
+          </nav>
+    </div>
+     
+    <div class="container">
+        <h1>WELCOME TO <span>MOVIE<span id="span_2">STREET</span> </span> </h1>
+    </div>
+</header>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+
+<main>
+    <section class="section_1">
+       <div class="container w-85 h-100">
+        <div class="row " id="responsive" style="height:32rem;"> 
+            {% for m in movie %}
+           
+               <div class="col-lg-4 col-sm-12 p-3" >
+                   <div class="card bg-dark">
+                       <div class="card-body ">
+                           <div class="text-center mx-auto">
+                             
+                                   <!-- <img style="width:260px;height: 400px;" src="{{ m.image.url }}" class="img-fluid" alt="" > -->
+                              
+                                   <img  src="{{ m.image.url }}" class="img-fluid img_slide" alt="" >
+
+                               <h3 class="text-warning h6">{{m.name}}</h3>
+                               <i id="read_more" class="text-secondary">{{m.releasedate}}</i>
+                               <a id="read_more" class="text-center" href="{% url 'details_2' m.id %}">read more</a>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+              {% endfor %}
+          
+           </div>
+       </div>
+    </section>
+    <section class="section_2">
+   <div class="container">
+       <div class="row">
+         <div class="col-md-6">
+           <h1 class="fw-bold text-light">YOU CAN WRITE YOUR OWN REVIEWS</h1>
+        </div>
+            <div class="col-md-12">
+               <div class="row ">
+                <div class="col-md-6 text-lg-end text-center">
+                   
+                        <h4 class="fw-bold text-light">Create an account now</h4>
+                   
+                    
+                </div>
+                <div class="col-md-6 col-lg-text-start">
+                    <a href="{% url 'register' %}"><button class="btn btn-outline-warning" >Sign Up</button></a> 
+                </div>
+               </div>
+            </div>
+               
+         </div>
+       
+   </div>
+
+    </section>
+
+    <section class="section_3"> 
+        <div class="container-fluid p-0">
+             <div class="container p-4 text-center">
+                      <div class="col-md-6 mx-auto">
+                        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                              <div class="carousel-item active">
+                                <!-- card -->
+                                <div class="card">
+                                    <img src="{% static 'images/f9.jpg' %}" class="card-img-top image-fluid" alt="...">
+                                    <div class="card-body">
+                                      <h5 class="card-title text-dark fw-bolder">Fast and furious 9</h5>
+                                      <p class="card-text text-dark fw-bolder">Releasing on this year.</p>
+                                      <a href="https://www.youtube.com/watch?v=_qyw6LC5pnE" class="btn btn-outline-warning">Go watch trailer</a>
+                                    </div>
+                                  </div>
+                                <!-- cards -->
+                              </div>
+                              <div class="carousel-item">
+                                <div class="card">
+                                    <img src="{% static 'images/venom_2.jpg' %}" class="card-img-top image-fluid" alt="...">
+                                    <div class="card-body">
+                                      <h5 class="card-title text-dark fw-bolder">venom 2</h5>
+                                      <p class="card-text text-dark fw-bolder">Releasong on 2021</p>
+                                      <a href="https://www.youtube.com/watch?v=rrwBnlYOp4g" class="btn btn-outline-warning">GO watch trailer</a>
+                                    </div>
+                                  </div>
+                                <!-- cards -->
+                              </div>
+                              <div class="carousel-item">
+                                <div class="card">
+                                  <img src="{% static 'images/aadujvthm.jpg' %}" class="card-img-top image-fluid" alt="...">
+                                  <div class="card-body">
+                                    <h5 class="card-title text-dark fw-bolder">Aadujeevitham</h5>
+                                    <p class="card-text text-dark fw-bolder">shoot on progress.</p>
+                                   
+                                  </div>
+                                </div>
+                            </div>
+                            <!-- carosal -->
+                            <div class="carousel-item">
+                              <div class="card">
+                                  <img src="{% static 'images/pushpa.jpg' %}" class="card-img-top image-fluid" alt="...">
+                                  <div class="card-body">
+                                    <h5 class="card-title text-dark fw-bolder">Pushpa</h5>
+                                    <p class="card-text text-dark fw-bolder">upcoming release</p>
+                                  
+                                  </div>
+                                </div>
+                              <!-- cards -->
+                            </div>
+                            <!-- carosal -->
+                            <div class="carousel-item">
+                              <div class="card">
+                                  <img src="{% static 'images/bilal2.jpg' %}" class="card-img-top image-fluid" alt="...">
+                                  <div class="card-body">
+                                    <h5 class="card-title text-warning">Bilal 2</h5>
+                                    <p class="card-text text-warning">upcoming project</p>
+                                  
+                                  </div>
+                                </div>
+                              <!-- cards -->
+                            </div>
+                          </div>
+                      </div>
+
+              
+             </div>
+        </div>
+    </section>
+
+    <section class="section_4">
+        <div class="container-fluid p-0 bg-dark"> 
+            <div class="container ">
+                <div class="text-center pt-5 pb-5">
+                    <h3 class="text-white font-weight-bold upcoming">UPCOMING MOVIES AND TRAILERS</span></h3>
+                </div>
+                <div class="row next"> 
+                    {% for x in video %}
+                   
+                       <div class="col-lg-4 col-md-8 col-sm-12 col-12 p-2" >
+                           <div class="card">
+                               <div class="card-body ">
+                                   <div class="text-center">
+                                     
+                                     <!-- 4:3 aspect ratio -->
+                                
+                            <div class="ratio ratio-16x9">
+                                {% video x.video '200x100' %}
+                              </div>    
+                                   
+    
+                                       <h4 class="text-warning h6">{{x.name}}</h4>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                      {% endfor %}
+                  
+                 
+                 
+                  
+                </div>
+            </div>
+        </div> 
+    </section>
+</main>
+
+<footer class="container-fluid p-0">
+    <div class="container-fluid text-light p-4 ">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-5 col-xl-5 text-center text-lg-start">
+                <P class="font-weight-bold">FOLLOW US</P>
+               <div class="pt-1 text-center text-lg-start">
+                 <a href=""><i style="font-size: 30px;" class="fab fa-facebook-square text-light"></i></a>
+                 <a href=""><i style="font-size: 30px;" class="fab fa-twitter-square px-3   text-light"></i></a>
+                 <a href=""><i style="font-size: 30px;" class="fab fa-instagram px-3  text-light"></i></a>
+                 
+                 <a href=""><i style="font-size: 30px;" class="fab fa-whatsapp-square px-3 text-light"></i></a>
+               </div>
+               
+              </div>
+              <div class="col-lg-4 text-center text-lg-start pt-5">
+              <h3 class="text-light h5 ">arundevunni@gmail.com</h3>
+             </div>
+             <div class="col-lg-3 pt-5">
+                  <div class="input-group ">
+                 
+                         <input type="text" class="form-control" placeholder="9744551779"  aria-label="Recipient's username" aria-describedby="basic-addon2" disabled>
+                             <div class="input-group-append">
+                                 <button class="btn btn-warning" type="button"><i class="fas fa-mobile-alt text-light"></i></button>
+                             </div>
+                      </div>
+                  </div>
+    
+        </div>
+    </div>
+</footer>
+
+
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <!-- <script src="{% static 'js/JQuery3.3.1.js' %}"></script>  -->
+    <script src="{% static 'js/lightslider.js' %}"></script>
+   <script>
+      $(document).ready(function() {
+    $('#responsive').lightSlider({
+        item:4,
+        loop:false,
+        slideMove:2,
+        easing: 'cubic-bezier(0.25, 0, 0.25, 1)',
+        speed:600,
+        responsive : [
+            {
+                breakpoint:700,
+                settings: {
+                    item:2,
+                    slideMove:1,
+                    slideMargin:2,
+                  }
+            },
+            {
+                breakpoint:480,
+                settings: {
+                    item:1,
+                    slideMove:1
+                  }
+            }
+        ]
+    });  
+  });
+  </script>
+ <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    
+
+<script>
+    $(document).ready(function (){
+      $('.next').slick({
+dots: true,
+infinite: false,
+speed: 300,
+slidesToShow: 3,
+slidesToScroll: 1,
+responsive: [
+  {
+    breakpoint: 1024,
+    settings: {
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      infinite: true,
+      dots: true
+    }
+  },
+  {
+    breakpoint: 600,
+    settings: {
+      slidesToShow: 1,
+      slidesToScroll: 1
+    }
+  },
+  {
+    breakpoint: 480,
+    settings: {
+      slidesToShow: 1,
+      slidesToScroll: 1
+    }
+  }
+  // You can unslick at a given breakpoint now by adding:
+  // settings: "unslick"
+  // instead of a settings object
+]
+});
+    })
+
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>

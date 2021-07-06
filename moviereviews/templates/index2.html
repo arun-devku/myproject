@@ -1,0 +1,241 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+{% load embed_video_tags %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<section class="sec_1">
+  <div class="container col-lg-6 col-sm-12">
+    <h1>WELCOME TO <span>MOVIE<span id="span_2">STREET</span> </span> </h1>
+  </div>
+ </section>
+ <section>
+   <h1 class="text-white">hello</h1>
+ </section>
+
+    <section class="main container-fluid mt-sm-auto ">
+        <div class="container pt-5 pb-5 mh-100%" >
+        <!-- <div class="card">
+            <div class="card-body"> -->
+               
+                     <div class="row next" > 
+                        {% for m in movie %}
+                       
+                           <div class="col-lg-4 col-sm-8 col-12 p-2 shadow-lg" >
+                               <div class="card ">
+                                   <div class="card-body ">
+                                       <div class="text-center">
+                                         
+                                               <!-- <img style="width:260px;height: 400px;" src="{{ m.image.url }}" class="img-fluid" alt="" > -->
+                                          
+                                               <img  src="{{ m.image.url }}" class="img-fluid img_slide" alt="" >
+       
+                                           <h3 id="movie_name" class="text-info h6 ">{{m.name}}</h3>
+                                           <i id="read_more" class="text-secondary">{{m.releasedate}}</i>
+                                           <a id="read_more" href="{% url 'details' m.id %}">Read more</a>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                          {% endfor %}
+                      
+                       </div>
+                      
+
+            
+            <!-- </div> -->
+        <!-- </div> -->
+    </section>
+    <section class="writedown">
+        <div class="container pt-5 mt-sm-auto ">
+            <div class="row">
+                
+                <div class="col-lg-6  col-sm-12 col-lg-text-left">
+                    <h3 class="wrtext font-weight-bold text-white " ><span class="text-info w" >W</span>rite your movie reviews...<i class="fas fa-pen-alt pl-2"></i></h3>
+                </div>
+                <div class="col-lg-6  bg-dark h-100 p-2 col-sm-10 col-10 post_form mx-auto">
+                    <form action="/moviestreet/pro6" method="POST" class="p-4" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                          <label for="exampleInputEmail1" class="text-info">MOVIE NAME</label>
+                          <input name="name" class="form-control">
+                        
+                        </div>
+                        <div class="form-group">
+                          <label class="text-info" >DIRECTOR NAME</label>
+                          <input type="text" name="director" class="form-control" >
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1" class="text-info">STARS</label>
+                            <input type="text" name="cast" class="form-control" >
+                          </div>
+                       
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1" class="text-info">WRITE YOUR REVIEW</label>
+                            <textarea class="form-control" name="description" rows="3"></textarea>
+                          </div>
+                          <div class="form-group">
+                            <label >RELEASE DATE</label>
+                            <input type="date" class="form-control"  name="release">
+                          </div>
+                          
+                        <div class="form-group">
+                            <label  class="text-info">RATE YOUR MOVIE</label>
+                            <input class="form-control" name="rating" ></input>
+                          </div>
+                          <div class="form-group">
+                            <label  class="text-info">UPLOAD MOVIE POSTER</label>
+                            <input type="file" name="images" class="form-control" >
+                          </div>
+                          <div class="text-center">
+                            <button type="submit" class="btn btn-outline-info col-lg-6 ">POST</button>
+                          </div>
+                
+                       
+                        <!-- <button type="submit" class="btn btn-primary">Edit</button> -->
+                      </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="sec-3 " class="bg-dark" >
+        <div class="container bg-dark" >
+            <div class="text-center pt-5 pb-5">
+                <h3 class="text-white font-weight-bold upcoming">UPCOMING <span class="text-info">MOVIES</span>  AND <span class="text-info"> TRAILERS</span></h3>
+            </div>
+            <div class="row next "> 
+                {% for x in video %}
+               
+                   <div class="col-lg-6 col-md-8 col-sm-12 col-12 p-2  " >
+                       <div class="card">
+                           <div class="card-body ">
+                               <div class="text-center">
+                                 
+                                 <!-- 4:3 aspect ratio -->
+              <div class="embed-responsive embed-responsive-4by3">
+                     <!-- <iframe class="embed-responsive-item" ></iframe> -->
+                     {% video x.video '300x200' %}
+                    </div>     
+                                 
+                               
+
+                                   <h3 class="text-primary h6">{{x.name}}</h3>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                  {% endfor %}
+              
+             
+             
+              
+            </div>
+        </div>
+    </section>
+   <!-- footer -->
+   <section>
+    <footer class="footer_section">
+      <div class="container-fluid p-0">
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-xl-3 text-center footer text-lg-left">
+              <P class="text-info font-weight-bold">FOLLOW US</P>
+             <div>
+               <a href=""><i style="font-size: 30px;" class="fab fa-facebook-square" id="icon"></i></a>
+               <a href=""><i style="font-size: 30px;" class="fab fa-twitter-square pl-2" id="icon"></i></a>
+               <a href=""><i style="font-size: 30px;" class="fab fa-instagram pl-2" id="icon"></i></a>
+               
+               <a href=""><i style="font-size: 30px;" class="fab fa-whatsapp-square pl-2" id="icon"></i></a>
+             </div>
+             
+            </div>
+            <div class="col-lg-3 text-center">
+            <h3 class="text-info h5 p-3">arundevunni@gmail.com</h3>
+           </div>
+           <div class="col-lg-3">
+             <div class="input-group p-3">
+               
+               <input type="text" class="form-control" placeholder="9744551779"  aria-label="Recipient's username" aria-describedby="basic-addon2" disabled>
+               <div class="input-group-append">
+                 <button class="btn btn-info" type="button"><i class="fas fa-mobile-alt"></i></button>
+               </div>
+             </div>
+           </div>
+        </div>
+      </div>
+    </footer>
+  </section>
+ 
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    
+
+  <script>
+      $(document).ready(function (){
+        $('.next').slick({
+  dots: true,
+  infinite: false,
+  speed: 300,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+    // You can unslick at a given breakpoint now by adding:
+    // settings: "unslick"
+    // instead of a settings object
+  ]
+});
+      })
+
+				
+  </script>
+  <script>
+   $('.center').slick({
+  centerMode: true,
+  centerPadding: '60px',
+  slidesToShow: 3,
+  responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 3
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 1
+      }
+    }
+  ]
+});
+  </script>
+  
+{% endblock %}

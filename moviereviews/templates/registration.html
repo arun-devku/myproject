@@ -1,0 +1,251 @@
+{% extends 'base3.html' %}
+{% block content %}
+{% load static %}
+
+<div class="container mt-5 mb-5">
+    <div class="row mt-5">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-6 col-11 mt-5">
+            <form action="/moviestreet/pro5" class="form_validation" method="POST">   
+                {% csrf_token %}       
+
+                                        <!-- firstname -->
+        <div class="form-group row mt-5">
+            <label for="firstname" class="col-sm-4 col-form-label text-white">First Name</label>
+              <div class="col-sm-8">
+                 <input type="text" name="firstname" class="form-control" id="firstname" placeholder="firstname">
+               </div>
+        </div>
+                              <!-- firstnameend -->
+<!-- lastname -->
+        <div class="form-group row">
+                 <label for="lastname" class="col-sm-4 col-form-label text-white">Last Name</label>
+                <div class="col-sm-8">
+                    <input type="text" name="lastname" class="form-control" id="lastname" placeholder="lastname">
+                </div>
+         </div>
+<!-- lastnameend -->
+<!-- dateofbirth -->
+         <div class="form-group row">
+                 <label for="dob" class="col-sm-4 col-form-label text-white">Date Of Birth</label>
+                 <div class="input-group date col-sm-8" data-provide="datepicker">
+                  <input type="text" class="form-control " data-date-format="YYYY-MM-DD" name="dateofbirth" placeholder="date of birth">
+                  <div class="input-group-addon">
+                      <span class="glyphicon glyphicon-th text-info"></span>
+                  </div>
+              </div>
+              <label  class="error2"></label>
+         </div>
+
+<!-- dateofbirthend -->
+
+      <!-- emailid -->
+      <div class="form-group row">
+        <label  class="col-sm-4 col-form-label text-white">Email Id</label>
+        <div class="col-sm-8">
+          <input type="text" name="emailid" class="form-control" id="username" placeholder="Email id">
+          <label for="" class="text-center text-danger" id='msg'></label>
+        </div>
+        
+      </div>
+      <!-- password -->
+      <div class="form-group row">
+        <label for="inputpassword" class="col-sm-4 col-form-label text-white">Password</label>
+        <div class="col-sm-8">
+          <input type="text" name="password" class="form-control" id="password" placeholder="password">
+        </div>
+      </div>
+      <!-- password -->
+
+      <!-- confirmPassword -->
+      <div class="form-group row">
+        <label for="confirmpassword" class="col-sm-4 col-form-label text-white">Confirm-Password</label>
+        <div class="col-sm-8">
+          <input type="text" name="confirmPassword" class="form-control" id="confirmpassword" placeholder="password">
+        </div>
+      </div>
+      <!-- confirmpasswordend -->
+
+      <!-- phonenumber -->
+
+      <div class="form-group row">
+        <label  class="col-sm-4 col-form-label text-white">Phone Number</label>
+        <div class="col-sm-8">
+          <input  name="phonenumber" class="form-control"  placeholder="phonenumber">
+        </div>
+      </div>
+      <!-- phonenumber_end -->
+      <div class="col-md-10 mx-auto mt-5">
+        <button type="submit"  class="btn btn-outline-warning btn-block">Sign Up</button>
+   </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+ <!-- footer -->
+ <section>
+  <footer class="container-fluid p-0">
+    <div class="container-fluid text-light p-4 ">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-5 col-xl-5 text-center text-lg-left">
+                <P class="font-weight-bold">FOLLOW US</P>
+               <div class="pt-1 text-center text-lg-left">
+                 <a href=""><i style="font-size: 30px;" class="fab fa-facebook-square text-light"></i></a>
+                 <a href=""><i style="font-size: 30px;" class="fab fa-twitter-square px-3   text-light"></i></a>
+                 <a href=""><i style="font-size: 30px;" class="fab fa-instagram px-3  text-light"></i></a>
+                 
+                 <a href=""><i style="font-size: 30px;" class="fab fa-whatsapp-square px-3 text-light"></i></a>
+               </div>
+               
+              </div>
+              <div class="col-lg-4 text-center text-lg-left pt-5">
+              <h3 class="text-light h5 ">arundevunni@gmail.com</h3>
+             </div>
+             <div class="col-lg-3 pt-5">
+                  <div class="input-group ">
+                 
+                         <input type="text" class="form-control" placeholder="9744551779"  aria-label="Recipient's username" aria-describedby="basic-addon2" disabled>
+                             <div class="input-group-append">
+                                 <button class="btn btn-warning" type="button"><i class="fas fa-mobile-alt text-light"></i></button>
+                             </div>
+                      </div>
+                  </div>
+    
+        </div>
+    </div>
+</footer>
+</section>
+
+<!-- validation -->
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.js"></script>
+<script>
+$(document).ready(function() {
+
+   
+    $(".form_validation").validate({
+      
+    
+      rules:{
+        emailid:{
+          required: true,
+          email:true
+               
+        },
+        password:{
+          required:true,
+          minlength:6
+        },
+        confirmPassword:{
+          required:true,
+          equalTo:"#password"
+        },
+        phonenumber:{
+          required:true,
+          number:true
+    
+        },
+        firstname:{
+          required:true,
+          minlength:2
+          
+        },
+        lastname:{
+          required:true,
+          minlength:2
+          
+        },
+        dateofbirth:{
+          required:true
+        },
+       
+      
+       
+       
+      messages:{
+        emailid:{
+          required:"<i class='far fa-exclamation-circle'></i> please enter your email id",
+          email:"<i class='far fa-exclamation-circle'></i> please enter valid email id"
+        },
+        password:{
+          required:"<i class='far fa-exclamation-circle'></i> please enter your password",
+          minlength:"<i class='far fa-exclamation-circle'></i> please enter minimum 6 characters"
+        },
+        confirmPassword:{
+             required:"<i class='far fa-exclamation-circle'></i> please enter the same password",
+             equalTo:"<i class='far fa-exclamation-circle'></i> enter your same password"
+        },
+        firstname:{
+          required:"<i class='far fa-exclamation-circle'></i> please enter your firstname",
+          minlength:"<i class='far fa-exclamation-circle'></i> please enter minimum 2 characters"
+          
+        },
+        lastname:{
+          required:"<i class='far fa-exclamation-circle'></i> please enter your lastname",
+          minlength:"<i class='far fa-exclamation-circle'></i> please enter minimum 2 characters"
+         
+        },
+       
+        phonenumber:{
+          required:"<i class='far fa-exclamation-circle'></i> please enter your mobilenumber"
+          
+        },
+      
+        errorPlacement: function(error, element) {
+          var placement = $(element).data('error');
+          if (placement) {
+            $(placement).append(error)
+          } else {
+            error.insertAfter(element);
+          }
+        },
+        submitHandler: function(form) {
+          form.submit();
+        }
+     
+      }}
+    
+    });
+    
+    
+    });
+    </script>
+<!----validation-->
+<!-- datepicker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+ <script>
+  $('.date').datepicker({
+    format: 'yyyy/mm/dd',
+    
+});
+ </script>
+<!-- <-- datepicker -->
+
+<script>
+
+$('#username').blur(function() {
+      
+  username=$('#username').val()
+  console.log(username)
+  $.ajax({
+    url:'checkusername',
+    type:'get',
+    data:{'user':username},
+    success:function(response){
+         console.log(response.check)
+         if (response.check=="exist"){
+               $('#msg').html('email id is already taken')
+         }
+         else{
+           $('#msg').html('')
+         }
+    }
+    
+
+
+  })
+})
+</script>
+
+{% endblock %}

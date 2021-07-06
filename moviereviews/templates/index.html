@@ -1,0 +1,360 @@
+{% load static %}
+{% load embed_video_tags %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+    <title>Moviestreet</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="{% static 'css/lightslider.css' %}">
+     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css" integrity="sha512-rxThY3LYIfYsVCWPCW9dB0k+e3RZB39f23ylUYTEuZMDrN/vRqLdaCBo/FbvVT6uC2r0ObfPzotsfKF9Qc5W5g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <link rel="stylesheet" href="{% static 'index.css' %}">
+
+    
+    <script src="{% static 'js/validation.js' %}"></script>
+     {% comment %} <script src="{% static 'js/date.js' %}"></script> {% endcomment %}
+   
+  </head>
+  <body>
+   
+<header>
+    <div class="container-fluid p-0">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#"><i class="fas fa-video text-white"></i><span class="text-white">MOVIE</span> STREET</a>
+              <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span  class="toggler-icon top-bar"></span>
+                <span   class="toggler-icon middle-bar"></span>
+                <span  class="toggler-icon bottom-bar"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  
+                <ul class="navbar-nav ms-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                 
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Account
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                   
+                <a class="dropdown-item" href="{% url 'account' %}">Profile</a>
+         
+                <a class="dropdown-item" href="{% url 'yourpost' %}">Your Reviews</a>
+                     
+                    </ul>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'loginout' %}">LOG OUT</a>
+                  </li>
+                </ul>
+                <form class="d-flex" method="GET" action="{% url 'index' %}">
+                  <input name="name" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-info" type="submit">Search</button>
+                </form>
+              </div>
+            </div>
+          </nav>
+    </div>
+     
+    <div class="container">
+        <h1>WELCOME TO <span>MOVIE<span id="span_2">STREET</span> </span> </h1>
+    </div>
+</header>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+
+<main>
+    <section class="section_1">
+       <div class="container w-85 h-100">
+        <div class="row " id="responsive" style="height:32rem;"> 
+            {% for m in movie %}
+           
+               <div class="col-lg-4 col-sm-12 p-3" >
+                   <div class="card bg-dark">
+                       <div class="card-body ">
+                           <div class="text-center mx-auto">
+                             <p class="text-danger">{{msg}}</p>
+                             
+                                   <!-- <img style="width:260px;height: 400px;" src="{{ m.image.url }}" class="img-fluid" alt="" > -->
+                              
+                                   <img  src="{{ m.image.url }}" class="img-fluid img_slide" alt="" >
+
+                               <h3 class="text-info h6">{{m.name}}</h3>
+                               <i id="read_more" class="text-secondary">{{m.releasedate}}</i>
+                               <a id="read_more" class="text-center" href="{% url 'details' m.id %}">read more</a>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+              {% endfor %}
+          
+           </div>
+       </div>
+    </section>
+    <section class="section_2">
+   <div class="container">
+       <div class="row">
+         <div class="col-md-8 text-center pt-lg-5">
+           <h1 class="fw-bold text-light">SHARE YOUR REVIEWS... <i class="fas fa-pen-alt pl-2"></i></h1>
+        </div>
+            <div class="col-md-12">
+               <div class="row ">
+                <div class="col-md-6 text-lg-end text-center">
+                   
+                     
+                   
+                    
+                </div>
+               
+               </div>
+            </div>
+               
+         </div>
+       
+   </div>
+
+    </section>
+
+    <section class="section_3"> 
+      <div class="container pt-5 mt-sm-auto ">
+        <div class="row">
+            
+            <div class="col-lg-6  col-sm-12 col-lg-text-end wrtext_div">
+              
+            </div>
+            <div class="col-lg-5 col-md-te bg-dark h-100 p-2 col-sm-10 col-10 post_form mx-auto align-middle my-auto">
+                <form class="form_validation" action="/moviestreet/pro6"  method="POST" class="p-4" enctype="multipart/form-data" >
+                    {% csrf_token %}
+                    <div class="form-group p-2">
+                      <label  class="text-info">MOVIE NAME</label>
+                      <input name="name" id="name" class="form-control">
+                    
+                    </div>
+                    <div class="form-group p-2">
+                      <label class="text-info" >DIRECTOR NAME</label>
+                      <input type="text" name="director" id="director" class="form-control" >
+                    </div>
+                    <div class="form-group p-2">
+                        <label for="exampleInputPassword1" class="text-info">STARS</label>
+                        <input type="text" name="cast" id="cast" class="form-control" >
+                      </div>
+                   
+                    <div class="form-group p-2">
+                        <label for="exampleFormControlTextarea1" class="text-info">WRITE YOUR REVIEW</label>
+                        <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                      </div>
+                      <div class="form-group p-2">
+                        <label class="text-info" >RELEASE DATE</label>
+                         <div class="input-group date" data-provide="datepicker">
+                                <input type="text" class="form-control " data-date-format="YYYY-MM-DD" name="release" id="release">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th text-info"></span>
+                                </div>
+                            </div>
+                      </div>
+                      
+                    <div class="form-group  p-2">
+                        <label  class="text-info">RATE YOUR MOVIE</label>
+                        <input class="form-control" id="rating" name="rating" >
+                      </div>
+                      <div class="form-group p-2">
+                        <label  class="text-info">UPLOAD MOVIE POSTER</label>
+                        <input type="file" name="images" id="images" class="form-control" >
+                      </div>
+                      <div class="text-center pt-2">
+                        <button type="submit"  onclick="return validate()" class="btn btn-outline-info col-lg-6 ">POST</button>
+                      </div>
+            
+                   
+                    <!-- <button type="submit" class="btn btn-primary">Edit</button> -->
+                  </form>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <section class="section_4">
+        <div class="container-fluid p-0 bg-dark"> 
+            <div class="container ">
+                <div class="text-center pt-5 pb-5">
+                    <h3 class="text-white font-weight-bold upcoming">UPCOMING MOVIES AND TRAILERS</span></h3>
+                </div>
+                <div class="row next"> 
+                    {% for x in video %}
+                   
+                       <div class="col-lg-4 col-md-8 col-sm-12 col-12 p-2" >
+                           <div class="card">
+                               <div class="card-body ">
+                                   <div class="text-center">
+                                     
+                                     <!-- 4:3 aspect ratio -->
+                                
+                            <div class="ratio ratio-16x9">
+                                {% video x.video '200x100' %}
+                              </div>    
+                                   
+    
+                                       <h4 class="text-info h6">{{x.name}}</h4>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                      {% endfor %}
+                  
+                 
+                 
+                  
+                </div>
+            </div>
+        </div> 
+    </section>
+</main>
+
+<footer class="container-fluid p-0">
+    <div class="container-fluid text-light p-4 ">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-5 col-xl-5 text-center text-lg-start">
+                <P class="font-weight-bold">FOLLOW US</P>
+               <div class="pt-1 text-center text-lg-start">
+                 <a href=""><i style="font-size: 30px;" class="fab fa-facebook-square text-light"></i></a>
+                 <a href=""><i style="font-size: 30px;" class="fab fa-twitter-square px-3   text-light"></i></a>
+                 <a href=""><i style="font-size: 30px;" class="fab fa-instagram px-3  text-light"></i></a>
+                 
+                 <a href=""><i style="font-size: 30px;" class="fab fa-whatsapp-square px-3 text-light"></i></a>
+               </div>
+               
+              </div>
+              <div class="col-lg-4 text-center text-lg-start pt-5">
+              <h3 class="text-light h5 ">arundevunni@gmail.com</h3>
+             </div>
+             <div class="col-lg-3 pt-5">
+                  <div class="input-group ">
+                 
+                         <input type="text" class="form-control" placeholder="9744551779"  aria-label="Recipient's username" aria-describedby="basic-addon2" disabled>
+                             <div class="input-group-append">
+                                 <button class="btn btn-info" type="button"><i class="fas fa-mobile-alt text-white"></i></button>
+                             </div>
+                      </div>
+                  </div>
+    
+        </div>
+    </div>
+</footer>
+
+
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <!-- <script src="{% static 'js/JQuery3.3.1.js' %}"></script>  -->
+    <script src="{% static 'js/lightslider.js' %}"></script>
+   <script>
+      $(document).ready(function() {
+    $('#responsive').lightSlider({
+        item:4,
+        loop:false,
+        slideMove:2,
+        easing: 'cubic-bezier(0.25, 0, 0.25, 1)',
+        speed:600,
+        responsive : [
+            {
+                breakpoint:800,
+                settings: {
+                    item:2,
+                    slideMove:1,
+                    slideMargin:2,
+                  }
+            },
+            {
+                breakpoint:480,
+                settings: {
+                    item:1,
+                    slideMove:1
+                  }
+            }
+        ]
+    });  
+  });
+  </script>
+  
+
+  
+ <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    
+
+<script>
+    $(document).ready(function (){
+      $('.next').slick({
+dots: true,
+infinite: false,
+speed: 300,
+slidesToShow: 3,
+slidesToScroll: 1,
+responsive: [
+  {
+    breakpoint: 1024,
+    settings: {
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      infinite: true,
+      dots: true
+    }
+  },
+  {
+    breakpoint: 600,
+    settings: {
+      slidesToShow: 1,
+      slidesToScroll: 1
+    }
+  },
+  {
+    breakpoint: 480,
+    settings: {
+      slidesToShow: 1,
+      slidesToScroll: 1
+    }
+  }
+  // You can unslick at a given breakpoint now by adding:
+  // settings: "unslick"
+  // instead of a settings object
+]
+});
+    })
+
+</script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+ <script>
+  $('.date').datepicker({
+    format: 'yyyy/mm/dd',
+    
+});
+ </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+    -->
+
+    <!-- validation -->
+    
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.js"> </script>
+
+ {% comment %} <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> {% endcomment %}
+  </body>
+</html>

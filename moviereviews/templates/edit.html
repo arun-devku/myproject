@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="container pt-5">
+  {% for m in movie %}
+    <div class="col-lg-6 offset-lg-4 pt-5">
+        <form action="{% url 'edit_post' m.id %}" method="POST" class="p-4" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+              <label class="text-info">MOVIE NAME</label>
+              <input name="name" class="form-control" value="{{m.name}}">
+            
+            </div>
+            <div class="form-group">
+              <label class="text-info" >DIRECTOR NAME</label>
+              <input type="text" name="director" class="form-control" value="{{m.director}}" >
+            </div>
+            <div class="form-group">
+                <label class="text-info" >STARS</label>
+                <input type="text" name="cast" class="form-control" value="{{m.cast}}">
+              </div>
+           
+            <div class="form-group">
+                <label class="text-info">WRITE YOUR REVIEWS</label>
+                <textarea class="form-control" name="description" rows="3" value="">{{m.description}}</textarea>
+              </div>
+              <div class="form-group">
+                <label class="text-info">RELEASE DATE</label>
+                <div class="input-group date" data-provide="datepicker">
+                                <input  class="form-control" name="release" id="release"  data-date-format="YYYY-MM-DD" value="{{m.releasedate}}" >
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th text-info"></span>
+                                </div>
+                            </div>
+              </div>
+              
+            <div class="form-group">
+                <label class="text-info" >RATING</label>
+                <input class="form-control" name="rating" value="{{m.rating}}" >
+              </div>
+              <div class="form-group">
+                <label class="text-info">MOVIE POSTER</label>
+                <input type="file" name="images" class="form-control" value="{{ m.image.url }}" >
+              </div>
+              <div class="text-center">
+                <button type="submit" class="btn btn-outline-info col-lg-6 ">Update</button>
+              </div>
+    {% endfor %}
+           
+            <!-- <button type="submit" class="btn btn-primary">Edit</button> -->
+          </form>
+    </div>
+</div>
+
+    <!-- footer -->
+    <section>
+      <footer class="container-fluid p-0" style="margin-top: -1rem;">
+        <div class="container-fluid text-light p-4 ">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-5 col-xl-5 text-center text-lg-left">
+                    <P class="font-weight-bold">FOLLOW US</P>
+                   <div class="pt-1 text-center text-lg-left">
+                     <a href=""><i style="font-size: 30px;" class="fab fa-facebook-square text-light"></i></a>
+                     <a href=""><i style="font-size: 30px;" class="fab fa-twitter-square px-3   text-light"></i></a>
+                     <a href=""><i style="font-size: 30px;" class="fab fa-instagram px-3  text-light"></i></a>
+                     
+                     <a href=""><i style="font-size: 30px;" class="fab fa-whatsapp-square px-3 text-light"></i></a>
+                   </div>
+                   
+                  </div>
+                  <div class="col-lg-4 text-center text-lg-left pt-5">
+                  <h3 class="text-light h5 ">arundevunni@gmail.com</h3>
+                 </div>
+                 <div class="col-lg-3 pt-5">
+                      <div class="input-group ">
+                     
+                             <input type="text" class="form-control" placeholder="9744551779"  aria-label="Recipient's username" aria-describedby="basic-addon2" disabled>
+                                 <div class="input-group-append">
+                                     <button class="btn btn-warning" type="button"><i class="fas fa-mobile-alt"></i></button>
+                                 </div>
+                          </div>
+                      </div>
+        
+            </div>
+        </div>
+    </footer>
+    </section>
+       
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+$(document).ready(function(){
+ $('.date').datepicker({
+    format: 'yyyy-mm-dd',
+    
+});
+})
+
+</script>
+{% endblock %}
