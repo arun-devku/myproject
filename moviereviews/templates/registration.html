@@ -23,18 +23,23 @@
                 <div class="col-sm-8">
                     <input type="text" name="lastname" class="form-control" id="lastname" placeholder="lastname">
                 </div>
+                <label  class="error2"></label>
          </div>
 <!-- lastnameend -->
 <!-- dateofbirth -->
          <div class="form-group row">
                  <label for="dob" class="col-sm-4 col-form-label text-white">Date Of Birth</label>
-                 <div class="input-group date col-sm-8" data-provide="datepicker">
-                  <input type="text" class="form-control " data-date-format="YYYY-MM-DD" name="dateofbirth" placeholder="date of birth">
-                  <div class="input-group-addon">
-                      <span class="glyphicon glyphicon-th text-info"></span>
-                  </div>
+                 <div class="col-sm-8">
+                  <div class="input-group date" data-provide="datepicker">
+                    <input type="text" class="form-control " data-date-format="YYYY-MM-DD" name="dateofbirth" placeholder="date of birth">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-th text-info"></span>
+                        </div>
               </div>
-              <label  class="error2"></label>
+              <label id="dateofbirth-error" class="error" for="dateofbirth"></label>
+                 </div>
+               
+              
          </div>
 
 <!-- dateofbirthend -->
@@ -159,10 +164,8 @@ $(document).ready(function() {
         dateofbirth:{
           required:true
         },
-       
       
-       
-       
+      },       
       messages:{
         emailid:{
           required:"<i class='far fa-exclamation-circle'></i> please enter your email id",
@@ -186,27 +189,20 @@ $(document).ready(function() {
           minlength:"<i class='far fa-exclamation-circle'></i> please enter minimum 2 characters"
          
         },
+        dateofbirth:{
+           required:"<i class='far fa-exclamation-circle'></i> please enter your DOB",
+         
+         
+        },
        
         phonenumber:{
           required:"<i class='far fa-exclamation-circle'></i> please enter your mobilenumber"
           
-        },
-      
-        errorPlacement: function(error, element) {
-          var placement = $(element).data('error');
-          if (placement) {
-            $(placement).append(error)
-          } else {
-            error.insertAfter(element);
-          }
-        },
-        submitHandler: function(form) {
-          form.submit();
         }
-     
-      }}
-    
-    });
+        
+      },
+        
+      });
     
     
     });
@@ -247,5 +243,6 @@ $('#username').blur(function() {
   })
 })
 </script>
+
 
 {% endblock %}

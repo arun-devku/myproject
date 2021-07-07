@@ -129,7 +129,10 @@ footer .container-fluid .col-lg-6 p{
       label{
         font-family: 'Baloo Tammudu 2', cursive;
       }
-
+   /* #dateofbirth-error{
+       margin-top: 5px;
+       margin-left:205px;
+   } */
 
     @media (min-width: 576px) and (max-width: 767.98px) {
        
