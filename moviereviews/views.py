@@ -41,7 +41,7 @@ def index(request):
             obj=Item.objects.all()
             return render(request, 'index.html',{"movie":movies,"video":obj,"movie":moviez})
         except:
-            return render(request, 'login.html',{'msg':"you must be sign in your account"})   
+            return render(request, 'login.html',{'msg':"you must be logged in"})   
 
 
 
@@ -52,7 +52,7 @@ def details(request, id):
         movies=Movies2.objects.filter(id=id)
         return render(request, 'details.html',{"movie":movies})
     except:
-        return render(request, 'login.html',{'msg':"you must be sign in your account"})   
+        return render(request, 'login.html',{'msg':"you must be logged in"})   
 def login(request):
         if request.method=="POST":
             try:
@@ -112,7 +112,7 @@ def index2(request):
             obj=Item.objects.all()
             return render(request, 'index2.html',{"movie":movies,"video":obj,"movie":moviez})
          except:
-              return render(request, 'login.html',{'msg':"you must be sign in your account"})   
+              return render(request, 'login.html',{'msg':"you must be logged in"})   
 
 # def edit(request,id):
 #     if request.method=="POST":
@@ -180,7 +180,7 @@ def account(request):
             email=LoginDetails.objects.get(id=logid)
             return render(request, 'account.html',{"movie":movies,"user":userdetails,"email":email})    
         except:
-            return render(request, 'login.html',{'msg':"you must be sign in your account"})    
+            return render(request, 'login.html',{'msg':"you must be logged in"})    
 
 def yourpost(request):
     try:
@@ -190,14 +190,14 @@ def yourpost(request):
 
         return render(request, 'accountpost.html',{"movie":movies})
     except:
-        return render(request, 'login.html',{'msg':"you must be sign in your account"})     
+        return render(request, 'login.html',{'msg':"you must be logged in"})     
 def details_Post(request, id):
     try:
         logid=request.session['logdata']
         movies=Movies2.objects.filter(id=id)
         return render(request, 'details2.html',{"movie":movies})
     except:
-        return render(request, 'login.html',{'msg':"you must be sign in your account"})     
+        return render(request, 'login.html',{'msg':"you must be logged in"})     
 
 def edit_post(request, id):
     if request.method=="POST":
@@ -251,21 +251,21 @@ def edit_post(request, id):
             movies=Movies2.objects.filter(id=id)
             return render(request, 'edit.html',{"movie":movies})
         except:
-            return render(request, 'login.html',{'msg':"you must be sign in your account"})    
+            return render(request, 'login.html',{'msg':"you must be logged in"})    
 
 
        
 
 def delete_post(request, id):
     if request.method=="POST":
-        movies=Movies2.objects.filter(id=id)
+        movies=Movies2.objects.filter(id=id) 
         movies.delete()
         return redirect("/moviestreet/pro8")       
     else:
         try:
             return redirect("/moviestreet/pro8")
         except:
-            return render(request, 'login.html',{'msg':"you must be sign in your account"})    
+            return render(request, 'login.html',{'msg':"you must be logged in"})    
 def home(request):
     movie=request.GET.get("name")
    
