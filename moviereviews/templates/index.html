@@ -107,7 +107,7 @@
    <div class="container">
        <div class="row">
          <div class="col-md-8 text-center pt-lg-5">
-           <h1 class="fw-bold text-light">SHARE YOUR REVIEWS... <i class="fas fa-pen-alt pl-2"></i></h1>
+           <h1 class="fw-bold text-light">SHARE YOUR REVIEWS... <i class="fas fa-pen-alt pl-2 text-dark"></i></h1>
         </div>
             <div class="col-md-12">
                <div class="row ">
@@ -263,7 +263,7 @@
       $(document).ready(function() {
     $('#responsive').lightSlider({
         item:4,
-        loop:false,
+        loop:true,
         slideMove:2,
         easing: 'cubic-bezier(0.25, 0, 0.25, 1)',
         speed:600,
@@ -297,9 +297,9 @@
 <script>
     $(document).ready(function (){
       $('.next').slick({
-dots: true,
-infinite: false,
-speed: 300,
+dots: false,
+infinite: true,
+speed: 500,
 slidesToShow: 3,
 slidesToScroll: 1,
 responsive: [
@@ -309,7 +309,7 @@ responsive: [
       slidesToShow: 1,
       slidesToScroll: 1,
       infinite: true,
-      dots: true
+      dots:false 
     }
   },
   {

@@ -85,7 +85,7 @@
 .lSSlideOuter .lSPager.lSpg > li a {
     background-color: #222222;
     border-radius: 30px;
-    display: inline-block;
+    display:none;
     height: 8px;
     overflow: hidden;
     text-indent: -999em;
@@ -390,3 +390,5 @@
   cursor: -ms-grabbing;
   cursor: grabbing;
 }
+
+
